@@ -1,6 +1,8 @@
-# Getting Started with Create React App
+# Name: Product Bill Due Date Alert
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+## Description
+
+A react typescript application that display a user product current or past due date.
 
 ## Available Scripts
 
