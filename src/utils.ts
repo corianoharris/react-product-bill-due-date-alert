@@ -22,3 +22,12 @@ export const daysBetweenDueDate: number = Math.round(
 export const daysAfterDueDate: number = Math.round(
   msAfterDueDate / (24 * 60 * 60 * 1000)
 );
+
+//
+/**
+ * Hide a string numbers.
+ * Use case:
+ *  hide users account numbers
+ */
+export const maskNumber = (cc: string, num = 4, mask = "*") =>
+  ("" + cc).slice(0, -num).replace(/./g, mask) + ("" + cc).slice(-num);
