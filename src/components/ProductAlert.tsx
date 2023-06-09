@@ -19,12 +19,19 @@ const StyledDiv = styled.div`
   height: auto;
   border-radius: 4px;
   padding: 12px;
-  box-shadow: 0 2px 4px -2px rgba(0, 0, 0.16),
-    0 5px 8px -4px rgba(0, 0, 0, 0.16);
+  box-shadow: 0 2.8px 2.2px rgba(0, 0, 0, 0.034),
+    0 6.7px 5.3px rgba(0, 0, 0, 0.048), 0 12.5px 10px rgba(0, 0, 0, 0.06),
+    0 22.3px 17.9px rgba(0, 0, 0, 0.072), 0 41.8px 33.4px rgba(0, 0, 0, 0.086),
+    0 100px 80px rgba(0, 0, 0, 0.12);
 `;
 
 const StyledAlertTextContainer = styled.div`
-  margin: 20px 0;
+  margin: 5px 0;
+`;
+
+const StyledHeader = styled.h3`
+  font-size: 24px;
+  text-align: center;
 `;
 
 const ProductAlert = (): JSX.Element => {
@@ -33,7 +40,7 @@ const ProductAlert = (): JSX.Element => {
   const [isPastDue, setIsPastDue] = useState<Boolean>(false);
 
   useEffect(() => {
-    if (daysBetweenDueDate <= 5 && daysBetweenDueDate >= 1) {
+    if (daysBetweenDueDate > 1 && daysBetweenDueDate < 31) {
       setWithinDays(true);
     } else {
       setWithinDays(false);
@@ -55,11 +62,11 @@ const ProductAlert = (): JSX.Element => {
   return (
     <>
       <StyledDiv>
-        <h3 className="alert-header">{user.product}</h3>
+        <StyledHeader className="alert-header">{user.product}</StyledHeader>
         <StyledAlertTextContainer className="alert-text-container">
-          {isWithinDays && !isDueToday && <FutureBillDueDate />}
-          {isDueToday && !isWithinDays && !isPastDue && <TodayBillDueDate />}
-          {isPastDue && !isDueToday && !isWithinDays && <PastBillDueDate />}
+          {isWithinDays && <FutureBillDueDate />}
+          {isDueToday && <TodayBillDueDate />}
+          {isPastDue && !isWithinDays && !isDueToday && <PastBillDueDate />}
         </StyledAlertTextContainer>
         <Button title="make a payment" />
       </StyledDiv>
